@@ -2,7 +2,8 @@
 # the open-source pygame library
 # throughout this file
 import pygame
-from constants import *
+from constants import SCREEN_WIDTH, SCREEN_HEIGHT
+from player import Player
 
 def main():
 
@@ -17,6 +18,9 @@ def main():
     clock = pygame.time.Clock()
     dt = 0  # delta time (time between frames)
 
+    # Instantiate the Player in the center of the screen
+    player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
+
     # Game loop
     running = True
     while running:
@@ -28,6 +32,9 @@ def main():
 
         # Fill the screen with black
         screen.fill((0, 0, 0))
+
+        # Draw the player
+        player.draw(screen)
 
         # Update the display
         pygame.display.flip()
