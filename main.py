@@ -30,12 +30,14 @@ def main():
             if event.type == pygame.QUIT:
                 running = False
 
+        # Update player movement
+        player.update(dt)
+
+        # RENDER FRAME:
         # Fill the screen with black
         screen.fill((0, 0, 0))
-
         # Draw the player
         player.draw(screen)
-
         # Update the display
         pygame.display.flip()
 
