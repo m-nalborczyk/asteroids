@@ -18,8 +18,16 @@ def main():
     clock = pygame.time.Clock()
     dt = 0  # delta time (time between frames)
 
+    # Create groups for updatable and drawable objects
+    updatable = pygame.sprite.Group()
+    drawable = pygame.sprite.Group()
+
     # Instantiate the Player in the center of the screen
     player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
+
+    # Add the player to both groups
+    updatable.add(player)
+    drawable.add(player)
 
     # Game loop
     running = True
@@ -31,13 +39,16 @@ def main():
                 running = False
 
         # Update player movement
-        player.update(dt)
+        updatable.update(dt)
 
         # RENDER FRAME:
         # Fill the screen with black
         screen.fill((0, 0, 0))
-        # Draw the player
-        player.draw(screen)
+
+        # Draw all drawable objects
+        for sprite in drawable:
+            sprite.draw(screen)
+            
         # Update the display
         pygame.display.flip()
 
